@@ -26,10 +26,6 @@ public class SettingHandler {
 
 
     public final void read(Object object) {
-        boolean flag = Arrays.stream(object.getClass().getInterfaces()).filter(c -> c == SettingFlag.class).count() >= 1;
-        if (!flag) {
-            throw new IllegalArgumentException(object.getClass().getSimpleName() + " must implement SettingFlag!");
-        }
         if (object.getClass().getSuperclass().getAnnotation(SerialiseSuper.class) != null) {
             try {
                 File file = this.setupFile();
@@ -79,10 +75,6 @@ public class SettingHandler {
     }
 
     public final void save(Object object) {
-        boolean flag = Arrays.stream(object.getClass().getInterfaces()).filter(c -> c == SettingFlag.class).count() >= 1;
-        if (!flag) {
-            throw new IllegalArgumentException(object.getClass().getSimpleName() + " must implement SettingFlag!");
-        }
         if (object.getClass().getSuperclass().getAnnotation(SerialiseSuper.class) != null) {
             try {
                 File file = this.setupFile();
