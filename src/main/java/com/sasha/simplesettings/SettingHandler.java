@@ -49,6 +49,7 @@ public class SettingHandler {
                         declaredField.set(object, yml.get(target));
                     }
                 }
+                yml.save();
             }catch (IllegalAccessException | IOException e) {
                 e.printStackTrace();
             }
