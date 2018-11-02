@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.sasha.simplesettings.annotation.SerialiseSuper;
 import com.sasha.simplesettings.annotation.Setting;
-import com.sasha.simplesettings.annotation.Transiant;
+import com.sasha.simplesettings.annotation.Transient;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
@@ -31,7 +31,7 @@ public class SettingHandler {
                 File file = this.setupFile();
                 YML yml = new YML(file);
                 for (Field declaredField : object.getClass().getSuperclass().getDeclaredFields()) {
-                    if (declaredField.getAnnotation(Transiant.class) != null) continue;
+                    if (declaredField.getAnnotation(Transient.class) != null) continue;
                     String target = object.getClass().getSimpleName() + "." + declaredField.getName();
                     declaredField.setAccessible(true);
                     if (!yml.exists(target)) {
@@ -80,7 +80,7 @@ public class SettingHandler {
                 File file = this.setupFile();
                 YML yml = new YML(file);
                 for (Field declaredField : object.getClass().getSuperclass().getDeclaredFields()) {
-                    if (declaredField.getAnnotation(Transiant.class)  != null) continue;
+                    if (declaredField.getAnnotation(Transient.class)  != null) continue;
                     String target = object.getClass().getSimpleName() + "." + declaredField.getName();
                     declaredField.setAccessible(true);
                     yml.set(target, declaredField.get(object));
