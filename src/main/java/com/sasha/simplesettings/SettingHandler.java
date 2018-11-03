@@ -93,7 +93,7 @@ public class SettingHandler {
         try {
             File file = this.setupFile();
             YML yml = new YML(file);
-            for (Field declaredField : this.getClass().getDeclaredFields()) {
+            for (Field declaredField : object.getClass().getDeclaredFields()) {
                 if (declaredField.getAnnotation(Setting.class) == null) continue;
                 declaredField.setAccessible(true);
                 String target = declaredField.getName();
